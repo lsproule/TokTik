@@ -2,8 +2,6 @@ import React, {useState, useRef, useEffect} from 'react';
 import {View, Text, Dimensions, TouchableWithoutFeedback, StyleSheet} from 'react-native';
 import Video, {LoadError,OnLoadData, OnProgressData } from 'react-native-video';
 import Slider from '@react-native-community/slider';
-import video from '../../assests/video.mp4';
-import trump from '../../assests/trump.mp4'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import AntD from 'react-native-vector-icons/AntDesign';
 import Icon from "react-native-vector-icons/FontAwesome"
@@ -11,7 +9,11 @@ import Fontisto from "react-native-vector-icons/Fontisto"
 import Entypo from "react-native-vector-icons/Entypo"
 
 
-const Post = () => {
+type PostProps = {
+  video: string;
+}
+
+const Post = ({video}:PostProps) => {
   const [pause, setPause] = useState<boolean>(false);
   const [changed, setChanged] = useState<boolean>(false)
   const [currentTime, setCurrentTime] = useState<number>(0);
@@ -74,7 +76,7 @@ const Post = () => {
          repeat={true}
          paused={pause}
          onError={(e:LoadError)=>console.error(e)} 
-         source={trump}
+         source={video}
          onBuffer={onBuffer}
          onLoad={onLoad}
          currentTime={time}
